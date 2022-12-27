@@ -1,8 +1,21 @@
-import { Navbar } from "flowbite-react";
-import React from "react";
+import { Button, Navbar } from "flowbite-react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [theme, setTheme] = useState("light");
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  const handleSwitch = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <div>
       <Navbar fluid={true} rounded={true}>
@@ -29,6 +42,16 @@ const Header = () => {
           </Navbar.Link>
           <Navbar.Link>
             <Link to="/login">Login</Link>
+          </Navbar.Link>
+          <Navbar.Link>
+            <Button
+              size="xs"
+              outline={true}
+              gradientDuoTone="tealToLime"
+              onClick={handleSwitch}
+            >
+              Theme
+            </Button>
           </Navbar.Link>
         </Navbar.Collapse>
       </Navbar>
