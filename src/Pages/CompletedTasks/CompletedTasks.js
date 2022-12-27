@@ -4,7 +4,7 @@ import React from "react";
 const CompletedTasks = () => {
   return (
     <div>
-      <h2 className="text-3xl font-semibold mb-4 text-center">
+      <h2 className="text-3xl font-semibold my-4 text-center">
         All Completed Tasks
       </h2>
       <Table>

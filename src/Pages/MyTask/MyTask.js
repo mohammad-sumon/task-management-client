@@ -4,7 +4,7 @@ import React from "react";
 const MyTask = () => {
   return (
     <div>
-      <h3 className="text-3xl font-semibold mb-4 text-center">My Task</h3>
+      <h3 className="text-3xl font-semibold my-4 text-center">My Task</h3>
       <Table>
         <Table.Head>
           <Table.HeadCell>All Task List</Table.HeadCell>

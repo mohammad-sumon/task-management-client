@@ -19,7 +19,7 @@ const AddTask = () => {
 
   return (
     <div className="px-6">
-      <h3 className="text-3xl font-semibold mb-4 text-center">
+      <h3 className="text-3xl font-semibold my-4 text-center">
         Please add your task here
       </h3>
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>

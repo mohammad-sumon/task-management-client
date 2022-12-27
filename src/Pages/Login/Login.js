@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div>
-      <h3 className="text-3xl font-semibold mb-4 text-center">
+      <h3 className="text-3xl font-semibold my-4 text-center">
         This is login page
       </h3>
       <div className="md:h-screen flex justify-center items-center">
