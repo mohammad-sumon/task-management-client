@@ -1,34 +1,41 @@
+import { Button, FileInput, Label, TextInput } from "flowbite-react";
 import React from "react";
 
 const AddTask = () => {
+  const handleKeyDown = (event) => {
+    event.preventDefault();
+    if (event.key === "Enter") {
+      console.log(event.target.value);
+    }
+  };
 
-    const handleKeyDown = (event) => {
-        if (event.key === 'Enter') {
-          console.log(event.target.value);
-        }
-      }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('clicked');
+    console.log(e.target.text.value);
+    console.log(e.target.file.value);
+  }
+
 
   return (
-    <div className="text-center">
+    <div className="px-6">
       <h3 className="text-3xl font-semibold mb-4 text-center">
         Please add your task here
       </h3>
-      <form>
-        <label className="block">
-          <span className="block text-sm font-medium text-slate-700 mb-2">
-            Write your task
-          </span>
-          <input type="text" className="border-2 border-blue-500 rounded-lg" onKeyDown={handleKeyDown}/>
-        </label>
-
-        <label className="block">
-          <span className="block text-sm font-medium text-slate-700 mb-2">
-            Upload your image
-          </span>
-          <input type="text" className="border-2 border-blue-500 rounded-lg" />
-        </label>
-
-        <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 p-2 rounded-lg mt-2">Submit</button>
+      <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
+        <div>
+          <div className="mb-2 block">
+            <Label htmlFor="text" value="Write your task here" />
+          </div>
+          <TextInput name="text" id="text" type="text" placeholder="" required={true} onKeyDown={handleKeyDown}/>
+        </div>
+        <div id="fileUpload">
+          <div className="mb-2 block">
+            <Label htmlFor="file" value="Upload Image" />
+          </div>
+          <FileInput name="file" id="file" />
+        </div>
+        <Button size="lg" type="submit" gradientDuoTone="greenToBlue">SUBMIT</Button>
       </form>
     </div>
   );
