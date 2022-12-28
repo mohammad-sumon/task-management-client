@@ -2,12 +2,12 @@ import { Button, FileInput, Label, TextInput } from "flowbite-react";
 import React from "react";
 
 const AddTask = () => {
-  const handleKeyDown = (event) => {
-    event.preventDefault();
-    if (event.key === "Enter") {
-      console.log(event.target.value);
-    }
-  };
+  // const handleKeyDown = (event) => {
+  //   event.preventDefault();
+  //   if (event.key === "Enter") {
+  //     console.log(event.target.value);
+  //   }
+  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -25,9 +25,9 @@ const AddTask = () => {
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
         <div>
           <div className="mb-2 block">
-            <Label htmlFor="text" value="Write your task here" />
+            <Label htmlFor="text1" value="Write your task here" />
           </div>
-          <TextInput name="text" id="text" type="text" placeholder="" required={true} onKeyDown={handleKeyDown}/>
+          <TextInput name="text" id="text1" type="text" placeholder="" required={true} />
         </div>
         <div id="fileUpload">
           <div className="mb-2 block">

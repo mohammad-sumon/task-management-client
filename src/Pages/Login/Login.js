@@ -1,8 +1,29 @@
+import { GoogleAuthProvider } from "firebase/auth";
 import { Button, Label, TextInput } from "flowbite-react";
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Login = () => {
+  const { setUser, googleSignIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    googleSignIn(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setUser(user);
+        console.log(user);
+        navigate("/");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div>
       <h3 className="text-3xl font-semibold my-4 text-center">
@@ -31,7 +52,9 @@ const Login = () => {
               Register here
             </Link>
           </p>
-          <Button gradientDuoTone="purpleToBlue">Or, Sign in with GOOGLE</Button>
+          <Button onClick={handleGoogleSignIn} gradientDuoTone="purpleToBlue">
+            Or, Sign in with GOOGLE
+          </Button>
         </form>
       </div>
     </div>

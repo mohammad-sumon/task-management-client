@@ -1,8 +1,23 @@
 import { Button, Navbar } from "flowbite-react";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const {user, setUser, logOut} = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        setUser({});
+      })
+      .catch((error) => {
+        setUser({});
+        console.error(error);
+      });
+  };
+  
+
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     if (theme === "dark") {
@@ -40,9 +55,24 @@ const Header = () => {
           <Navbar.Link>
             <Link to="/completedtasks">Completed Tasks</Link>
           </Navbar.Link>
-          <Navbar.Link>
-            <Link to="/login">Login</Link>
+          <>
+          {
+            user?.uid && (
+              <>
+              <Navbar.Link>
+            <Button 
+            onClick={handleLogOut}
+            size="xs"
+              outline={true}
+              gradientDuoTone="purpleToBlue">Logout</Button>
           </Navbar.Link>
+              </>
+            )
+          }
+          </>
+          {/* <Navbar.Link>
+            <Link to="/login">Login</Link>
+          </Navbar.Link> */}
           <Navbar.Link>
             <Button
               size="xs"
