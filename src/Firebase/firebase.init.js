@@ -17,3 +17,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export default app;
+
+
+
+
+/*
+const firebaseConfig = {
+  apiKey: "AIzaSyDXhmnVwMky9m-5u2zRg2IrpZ-mHEOEXzo",
+  authDomain: "task-management-c1812.firebaseapp.com",
+  projectId: "task-management-c1812",
+  storageBucket: "task-management-c1812.appspot.com",
+  messagingSenderId: "991213543304",
+  appId: "1:991213543304:web:1f46ca2873a14c9479243d"
+};
+
+
+*/
