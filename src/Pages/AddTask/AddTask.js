@@ -1,7 +1,9 @@
 import { Button, FileInput, Label, TextInput } from "flowbite-react";
-import React from "react";
+import React, { useState } from "react";
 
 const AddTask = () => {
+  const [task, setTask] = useState({});
+
   // const handleKeyDown = (event) => {
   //   event.preventDefault();
   //   if (event.key === "Enter") {
@@ -11,9 +13,29 @@ const AddTask = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('clicked');
-    console.log(e.target.text.value);
-    console.log(e.target.file.value);
+
+    const form = e.target;
+    const taskName = form.text.value;
+    const image = form.file.value;
+    const task = {taskName, image}
+    console.log(task);
+    // form.reset();
+
+    fetch('http://localhost:5000/myTasks', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(task)
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.acknowledged){
+        alert('Task added successfully');
+        form.reset();
+        console.log(data);
+      }
+    })
   }
 
 
