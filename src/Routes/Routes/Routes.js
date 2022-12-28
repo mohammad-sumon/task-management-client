@@ -28,7 +28,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/completedtasks',
-                element: <CompletedTasks></CompletedTasks>
+                element: <CompletedTasks></CompletedTasks>,
+                loader: () => fetch('http://localhost:5000/completedTasks')
             },
             {
                 path: '/login',

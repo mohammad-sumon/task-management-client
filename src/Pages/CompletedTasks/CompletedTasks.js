@@ -1,11 +1,35 @@
 import { Button, Table, TextInput } from "flowbite-react";
-import React from "react";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router-dom";
 
 const CompletedTasks = () => {
+  const completed = useLoaderData();
+  const [displayCompleteTask, setDisplayCompleteTask] = useState(completed);
+
+  const handleDelete = comptask => {
+    const agree = window.confirm(`Are you sure to delete: ${comptask.taskName}`);
+    if(agree){
+      // console.log('deleting task with id', comptask._id);
+      fetch(`http://localhost:5000/completedTasks/${comptask._id}`, {
+        method: 'DELETE'
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.deletedCount > 0){
+          alert('Task Deleted Successfully');
+          const remainingTasks = displayCompleteTask.filter(tsk => tsk._id !== comptask._id);
+          setDisplayCompleteTask(remainingTasks);
+        }
+      })
+    }
+  }
+
+
   return (
     <div>
       <h2 className="text-3xl font-semibold my-4 text-center">
-        All Completed Tasks
+        All Completed Tasks {displayCompleteTask.length}
       </h2>
       <Table>
         <Table.Head>
@@ -14,7 +38,29 @@ const CompletedTasks = () => {
           <Table.HeadCell>Delete</Table.HeadCell>
           <Table.HeadCell>Status</Table.HeadCell>
         </Table.Head>
-        <Table.Body className="divide-y">
+        {
+          displayCompleteTask.map((comptask, i) => <Table.Body key={comptask._id} className="divide-y">
+          <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+            <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+            {i+1}. {comptask.taskName}
+            </Table.Cell>
+            <Table.Cell>
+              <TextInput></TextInput>
+            </Table.Cell>
+            <Table.Cell>
+              <Button onClick={() => handleDelete(comptask)} size="xs" outline={true} gradientDuoTone="redToYellow">
+                Delete
+              </Button>
+            </Table.Cell>
+            <Table.Cell>
+              <Button size="xs" outline={true} gradientDuoTone="greenToBlue">
+                Not Completed
+              </Button>
+            </Table.Cell>
+          </Table.Row>
+        </Table.Body>)
+        }
+        {/* <Table.Body className="divide-y">
           <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
             <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
               Apple MacBook Pro 17"
@@ -49,7 +95,7 @@ const CompletedTasks = () => {
             <Table.Cell>Accessories</Table.Cell>
             <Table.Cell>$99</Table.Cell>
           </Table.Row>
-        </Table.Body>
+        </Table.Body> */}
       </Table>
     </div>
   );
