@@ -5,31 +5,15 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDXhmnVwMky9m-5u2zRg2IrpZ-mHEOEXzo",
-  authDomain: "task-management-c1812.firebaseapp.com",
-  projectId: "task-management-c1812",
-  storageBucket: "task-management-c1812.appspot.com",
-  messagingSenderId: "991213543304",
-  appId: "1:991213543304:web:1f46ca2873a14c9479243d"
+  apiKey: process.env.REACT_APP_apiKey,
+  authDomain: process.env.REACT_APP_authDomain,
+  projectId: process.env.REACT_APP_projectId,
+  storageBucket: process.env.REACT_APP_storageBucket,
+  messagingSenderId: process.env.REACT_APP_messagingSenderId,
+  appId: process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export default app;
-
-
-
-
-/*
-const firebaseConfig = {
-  apiKey: "AIzaSyDXhmnVwMky9m-5u2zRg2IrpZ-mHEOEXzo",
-  authDomain: "task-management-c1812.firebaseapp.com",
-  projectId: "task-management-c1812",
-  storageBucket: "task-management-c1812.appspot.com",
-  messagingSenderId: "991213543304",
-  appId: "1:991213543304:web:1f46ca2873a14c9479243d"
-};
-
-
-*/
