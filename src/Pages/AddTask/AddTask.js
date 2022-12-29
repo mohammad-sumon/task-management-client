@@ -21,7 +21,7 @@ const AddTask = () => {
     console.log(task);
     // form.reset();
 
-    fetch('http://localhost:5000/myTasks', {
+    fetch('https://task-management-server-omega.vercel.app/myTasks', {
       method: 'POST',
       headers: {
         'content-type': 'application/json'

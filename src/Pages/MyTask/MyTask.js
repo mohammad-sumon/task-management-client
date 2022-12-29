@@ -11,7 +11,7 @@ const MyTask = () => {
     // console.log(agree);
     if(agree){
       // console.log('deleting task with id', task._id);
-      fetch(`http://localhost:5000/myTasks/${task._id}`, {
+      fetch(`https://task-management-server-omega.vercel.app/myTasks/${task._id}`, {
         method: 'DELETE'
       })
       .then(res => res.json())
@@ -31,7 +31,7 @@ const MyTask = () => {
     // console.log('clicked', task._id);
     const complete = window.confirm(`Are you sure you completed this task ${task.taskName}`);
     if(complete){
-      fetch('http://localhost:5000/completedTasks', {
+      fetch('https://task-management-server-omega.vercel.app/completedTasks', {
         method: 'POST',
         headers: {
           'content-type': 'application/json'

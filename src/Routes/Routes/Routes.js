@@ -24,12 +24,12 @@ export const router = createBrowserRouter([
             {
                 path: '/mytask',
                 element: <MyTask></MyTask>,
-                loader: () => fetch('http://localhost:5000/myTasks')
+                loader: () => fetch('https://task-management-server-omega.vercel.app/myTasks')
             },
             {
                 path: '/completedtasks',
                 element: <CompletedTasks></CompletedTasks>,
-                loader: () => fetch('http://localhost:5000/completedTasks')
+                loader: () => fetch('https://task-management-server-omega.vercel.app/completedTasks')
             },
             {
                 path: '/login',

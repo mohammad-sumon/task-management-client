@@ -10,7 +10,7 @@ const CompletedTasks = () => {
     const agree = window.confirm(`Are you sure to delete: ${comptask.taskName}`);
     if(agree){
       // console.log('deleting task with id', comptask._id);
-      fetch(`http://localhost:5000/completedTasks/${comptask._id}`, {
+      fetch(`https://task-management-server-omega.vercel.app/completedTasks/${comptask._id}`, {
         method: 'DELETE'
       })
       .then(res => res.json())
